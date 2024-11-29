@@ -43,7 +43,7 @@ def game_loop(window, game_speed):
         # Desenhar elementos
         draw_screen(window=window)
         draw_snake(snake=snake, window=window)
-        draw_actor(actor=fruit, window=window, char='curses.ACS_DIAMOND')
+        draw_actor(actor=fruit, window=window, char=curses.ACS_DIAMOND)
         # Pegar input do usuário
         direction = get_new_direction(window=window, timeout=game_speed)
         if direction is None:
