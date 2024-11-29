@@ -68,8 +68,6 @@ def game_loop(window, game_speed):
 
     # Mensagem ao final do jogo
     finish_game(score=score, window=window)
-
-
 def finish_game(score, window):
     """
     Função que exibe a mensagem de término do jogo.
@@ -93,8 +91,6 @@ def finish_game(score, window):
     window.addstr(y, x, s)
     window.refresh()
     time.sleep(2)
-
-
 def get_new_fruit(window):
     """
     Função que gera uma nova posição para a fruta na tela.
@@ -111,8 +107,6 @@ def get_new_fruit(window):
     """
     height, width = window.getmaxyx()
     return [random.randint(1, height-2), random.randint(1, width-2)]
-
-
 def get_new_direction(window, timeout):
     """
     Função que captura a direção de movimento da cobra com base na entrada do usuário.
@@ -135,8 +129,6 @@ def get_new_direction(window, timeout):
     if direction in [curses.KEY_UP, curses.KEY_LEFT, curses.KEY_DOWN, curses.KEY_RIGHT]:
         return direction
     return None
-
-
 def direction_is_opposite(direction, current_direction):
     """
     Função que verifica se a nova direção escolhida é oposta à direção atual.
@@ -165,8 +157,6 @@ def direction_is_opposite(direction, current_direction):
             return current_direction == curses.KEY_UP
         case curses.KEY_RIGHT:
             return current_direction == curses.KEY_LEFT
-
-
 def move_snake(snake, direction, snake_ate_fruit):
     """
     Função que movimenta a cobra na direção especificada.
@@ -190,8 +180,6 @@ def move_snake(snake, direction, snake_ate_fruit):
     move_actor(actor=head, direction=direction)
     if not snake_ate_fruit:
         snake.pop()
-
-
 def move_actor(actor, direction):
     """
     Função que move um ator (objeto com coordenadas) em uma direção especificada.
@@ -220,8 +208,6 @@ def move_actor(actor, direction):
             actor[0] += 1
         case curses.KEY_RIGHT:
             actor[1] += 1
-
-
 def snake_hit_border(snake, window):
     """
     Função que verifica se a cobra colidiu com as bordas da janela.
@@ -239,8 +225,6 @@ def snake_hit_border(snake, window):
     """
     head = snake[0]
     return actor_hit_border(actor=head, window=window)
-
-
 def actor_hit_border(actor, window):
     """
     Função que verifica se um ator (objeto com coordenadas) colidiu com as bordas da janela.
@@ -267,8 +251,6 @@ def actor_hit_border(actor, window):
     if (actor[1] <= 0) or (actor[1] >= (width - 1)):
         return True
     return False
-
-
 def snake_hit_itself(snake):
     """
     Função que verifica se a cobra colidiu com o próprio corpo.
@@ -287,8 +269,6 @@ def snake_hit_itself(snake):
     head = snake[0]
     body = snake[1:]
     return head in body
-
-
 def snake_hit_fruit(snake, fruit):
     """
     Função que verifica se a cobra colidiu com a fruta.
@@ -304,8 +284,6 @@ def snake_hit_fruit(snake, fruit):
     - Booleano (`True` ou `False`) indicando se a cobra colidiu com a fruta.
     """
     return fruit in snake
-
-
 def draw_screen(window):
     """
     Função que desenha a tela do jogo.
@@ -322,8 +300,6 @@ def draw_screen(window):
     """
     window.clear()
     window.border(0)
-
-
 def draw_snake(snake, window):
     """
     Função que desenha a cobra na tela.
@@ -346,8 +322,6 @@ def draw_snake(snake, window):
     draw_actor(actor=head, window=window, char="✴")
     for body_part in body:
         draw_actor(actor=body_part, window=window, char="✳")
-
-
 def draw_actor(actor, window, char):
     """
     Função que desenha um ator (objeto com coordenadas) na tela.
@@ -364,8 +338,6 @@ def draw_actor(actor, window, char):
     - Não retorna valores; o ator é desenhado diretamente no objeto `window`.
     """
     window.addch(actor[0], actor[1], char)
-
-
 def select_difficulty():
     """
     Função que permite ao jogador selecionar a dificuldade do jogo.
